@@ -2,9 +2,18 @@ const express = require('express');
 
 const middlewares = require('./middlewares');
 
+const bodyparse = require('body-parser');
+
+const crypto = require('crypto');
+
 const app = express();
 
-app.post('/login', middlewares.loginValidator, middlewares.login);
+app.use(bodyparse.json());
+
+app.post('/login', middlewares.loginValidator,  (_req, res) => {
+  const token = crypto.randomBytes(8).toString('hex');
+  return res.status(200).send({ token });
+});
 
 // não remova esse endpoint, e para o avaliador funcionarr
 app.get('/', (request, response) => {
