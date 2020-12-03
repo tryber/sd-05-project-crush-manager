@@ -1,9 +1,9 @@
 const express = require('express');
+
 const middlewares = require('./middlewares');
 const app = express();
 
-app.post('/login', middlewares.login);
-
+app.post('/login', middlewares.loginValidator, middlewares.login);
 
 // não remova esse endpoint, e para o avaliador funcionarr
 app.get('/', (request, response) => {
