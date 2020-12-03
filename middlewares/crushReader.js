@@ -8,7 +8,7 @@ const lerCrush = (dir) => {
     console.log('teste', data);
     if (err) {
       console.error(
-        `Não foi possível ler o arquivo ${crushFile}\n Erro: ${err}`
+        `Não foi possível ler o arquivo ${crushFile}\n Erro: ${err}`,
       );
       process.exit(1);
     }
