@@ -1,6 +1,7 @@
 const express = require('express');
 
 const middlewares = require('./middlewares');
+
 const app = express();
 
 app.post('/login', middlewares.loginValidator, middlewares.login);
