@@ -3,12 +3,13 @@ const path = require('path');
 
 const lerCrush = (dir) => {
   const crushFile = '../crush.json';
-  console.log("Listando usuários...");
-  fs.readFile(
-    path.resolve(dir, '.', 'crush.json'), 'utf8', (err, data) => {
-    console.log("teste", data)
+  console.log('Listando usuários...');
+  fs.readFile(path.resolve(dir, '.', 'crush.json'), 'utf8', (err, data) => {
+    console.log('teste', data);
     if (err) {
-      console.error(`Não foi possível ler o arquivo ${crushFile}\n Erro: ${err}`);
+      console.error(
+        `Não foi possível ler o arquivo ${crushFile}\n Erro: ${err}`
+      );
       process.exit(1);
     }
     if (JSON.parse(data) === []) {
@@ -16,7 +17,7 @@ const lerCrush = (dir) => {
     }
     return JSON.parse(data);
   });
-}
+};
 
 const validarToken = (req, res, next) => {
   const { authorization } = req.headers;

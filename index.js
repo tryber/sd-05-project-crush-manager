@@ -6,7 +6,7 @@ const bodyparse = require('body-parser');
 
 const middlewares = require('./middlewares');
 
-const { lerCrush, validarToken } = require('./middlewares/crushReader')
+const { lerCrush, validarToken } = require('./middlewares/crushReader');
 
 const app = express();
 
