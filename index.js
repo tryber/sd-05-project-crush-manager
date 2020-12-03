@@ -1,16 +1,16 @@
 const express = require('express');
 
+const crypto = require('crypto');
+
 const middlewares = require('./middlewares');
 
 const bodyparse = require('body-parser');
-
-const crypto = require('crypto');
 
 const app = express();
 
 app.use(bodyparse.json());
 
-app.post('/login', middlewares.loginValidator,  (_req, res) => {
+app.post('/login', middlewares.loginValidator, (_req, res) => {
   const token = crypto.randomBytes(8).toString('hex');
   return res.status(200).send({ token });
 });
