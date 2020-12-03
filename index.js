@@ -2,9 +2,9 @@ const express = require('express');
 
 const crypto = require('crypto');
 
-const middlewares = require('./middlewares');
-
 const bodyparse = require('body-parser');
+
+const middlewares = require('./middlewares');
 
 const app = express();
 
