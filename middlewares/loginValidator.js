@@ -28,6 +28,5 @@ module.exports = (req, res, next) => {
       message: 'A "senha" deve ter pelo menos 6 caracteres',
     });
   }
-
   next();
 };
