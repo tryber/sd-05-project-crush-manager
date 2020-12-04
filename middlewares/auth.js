@@ -1,5 +1,4 @@
 module.exports = (req, res, next) => {
-  console.log(Date.now(), req.headers)
   const token = req.headers.authorization;
 
   if (!token) {
