@@ -8,5 +8,4 @@ const crushFile = async () => fs.readFileSync(
 
 const lerCrush = async () => JSON.parse(await crushFile());
 
-
 module.exports = { lerCrush };
