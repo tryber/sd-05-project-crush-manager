@@ -1,4 +1,4 @@
-const { lerCrush, adicionaCrush } = require('../services');
+const { lerCrush, adicionaCrush } = require('../services/crushManager');
 
 module.exports = async (req, res) => {
   const { name, age, date } = req.body;

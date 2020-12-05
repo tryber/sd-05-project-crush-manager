@@ -27,7 +27,7 @@ describe('2 - Crie o endpoint POST /crush', () => {
 
   it('Será validado que é possível cadastrar um crush com sucesso', async () => {
     await frisby
-      .post(`${url}/login`, {
+      .post(`${url}/crush`, {
         body: {
           email: 'deferiascomigo@gmail.com',
           password: '12345678',
@@ -60,7 +60,7 @@ describe('2 - Crie o endpoint POST /crush', () => {
 
   it('Será validado que não é possível cadastrar um crush sem nome', async () => {
     await frisby
-      .post(`${url}/login`, {
+      .post(`${url}/crush`, {
         body: {
           email: 'deferiascomigo@gmail.com',
           password: '12345678',
@@ -92,7 +92,7 @@ describe('2 - Crie o endpoint POST /crush', () => {
 
   it('Será validado que não é possível cadastrar um crush com nome menor que 3 caracteres', async () => {
     await frisby
-      .post(`${url}/login`, {
+      .post(`${url}/crush`, {
         body: {
           email: 'deferiascomigo@gmail.com',
           password: '12345678',
@@ -127,7 +127,7 @@ describe('2 - Crie o endpoint POST /crush', () => {
 
   it('Será validado que não é possível cadastrar um crush sem idade', async () => {
     await frisby
-      .post(`${url}/login`, {
+      .post(`${url}/crush`, {
         body: {
           email: 'deferiascomigo@gmail.com',
           password: '12345678',
@@ -159,7 +159,7 @@ describe('2 - Crie o endpoint POST /crush', () => {
 
   it('Será validado que não é possível cadastrar um crush com idade menor de 18 anos', async () => {
     await frisby
-      .post(`${url}/login`, {
+      .post(`${url}/crush`, {
         body: {
           email: 'deferiascomigo@gmail.com',
           password: '12345678',
@@ -192,7 +192,7 @@ describe('2 - Crie o endpoint POST /crush', () => {
 
   it('Será validado que não é possível cadastrar um crush sem o campo date', async () => {
     await frisby
-      .post(`${url}/login`, {
+      .post(`${url}/crush`, {
         body: {
           email: 'deferiascomigo@gmail.com',
           password: '12345678',
@@ -226,7 +226,7 @@ describe('2 - Crie o endpoint POST /crush', () => {
 
   it('Será validado que não é possível cadastrar um crush sem a chave rate', async () => {
     await frisby
-      .post(`${url}/login`, {
+      .post(`${url}/crush`, {
         body: {
           email: 'deferiascomigo@gmail.com',
           password: '12345678',
@@ -261,7 +261,7 @@ describe('2 - Crie o endpoint POST /crush', () => {
 
   it('Será validado que não é possível cadastrar um crush com rate menor que 1', async () => {
     await frisby
-      .post(`${url}/login`, {
+      .post(`${url}/crush`, {
         body: {
           email: 'deferiascomigo@gmail.com',
           password: '12345678',
@@ -296,7 +296,7 @@ describe('2 - Crie o endpoint POST /crush', () => {
 
   it('Será validado que não é possível cadastrar um crush com rate maior que 5', async () => {
     await frisby
-      .post(`${url}/login`, {
+      .post(`${url}/crush`, {
         body: {
           email: 'deferiascomigo@gmail.com',
           password: '12345678',
@@ -331,7 +331,7 @@ describe('2 - Crie o endpoint POST /crush', () => {
 
   it('Será validado que não é possível cadastrar um crush sem a chave datedAt', async () => {
     await frisby
-      .post(`${url}/login`, {
+      .post(`${url}/crush`, {
         body: {
           email: 'deferiascomigo@gmail.com',
           password: '12345678',
@@ -366,7 +366,7 @@ describe('2 - Crie o endpoint POST /crush', () => {
 
   it('Será validado que não é possível cadastrar um crush com datedAt sem o formato "dd/mm/aaaa"', async () => {
     await frisby
-      .post(`${url}/login`, {
+      .post(`${url}/crush`, {
         body: {
           email: 'deferiascomigo@gmail.com',
           password: '12345678',
@@ -401,7 +401,7 @@ describe('2 - Crie o endpoint POST /crush', () => {
 
   it('Será validado que não é possível cadastrar um crush sem estar autorizado', async () => {
     await frisby
-      .post(`${url}/login`, {
+      .post(`${url}/crush`, {
         body: {
           email: 'deferiascomigo@gmail.com',
           password: '12345678',
@@ -423,7 +423,7 @@ describe('2 - Crie o endpoint POST /crush', () => {
 
   it('Será validado que não é possível cadastrar um crush com token inválido', async () => {
     await frisby
-      .post(`${url}/login`, {
+      .post(`${url}/crush`, {
         body: {
           email: 'deferiascomigo@gmail.com',
           password: '12345678',
