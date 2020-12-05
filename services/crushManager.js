@@ -13,4 +13,4 @@ const lerCrush = async () => {
 module.exports = {
   adicionaCrush,
   lerCrush,
-}
+};
