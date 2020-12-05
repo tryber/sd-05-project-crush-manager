@@ -4,4 +4,4 @@ const adicionaCrush = require('./adicionaCrush');
 module.exports = {
   lerCrush,
   adicionaCrush,
-}
+};
