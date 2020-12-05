@@ -6,7 +6,7 @@ const bodyparse = require('body-parser');
 
 const middlewares = require('./middlewares');
 
-const { lerCrush } = require('./services/lerCrush');
+const lerCrush = require('./services/lerCrush');
 
 const app = express();
 
@@ -18,8 +18,11 @@ app.post('/login', middlewares.loginValidator, (_req, res) => {
 });
 
 app.get('/crush', middlewares.auth, async (_req, res) => {
-  res.status(200).json(await lerCrush());
+  const crushList = await lerCrush();
+  res.status(200).json(crushList);
 });
+
+app.post('/crush', middlewares.auth, middlewares.validaNovoCrush, middlewares.addCrush);
 
 app.post('/get', (_req, res) => {
   const token = crypto.randomBytes(8).toString('hex');

@@ -1,11 +1,8 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require('fs').promises;
 
-const crushFile = async () => fs.readFileSync(
-  path.join(__dirname, '../crush.json'),
-  'utf8',
-);
+const lerCrush = async () => {
+  const crushList = await fs.readFile('./crush.json', 'utf-8');
+  return JSON.parse(crushList);
+};
 
-const lerCrush = async () => JSON.parse(await crushFile());
-
-module.exports = { lerCrush };
+module.exports = lerCrush;
