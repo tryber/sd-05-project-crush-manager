@@ -22,6 +22,9 @@ app.get('/crush', middlewares.auth, async (_req, res) => {
   res.status(200).json(crushList);
 });
 
+app.get('/crush/:id', middlewares.auth, middlewares.retornaCrush);
+
+
 app.post('/crush', middlewares.auth, middlewares.criarCrush);
 
 app.post('/get', (_req, res) => {
