@@ -21,14 +21,14 @@ module.exports = async (req, res) => {
   }
   if (!date || !datedAt || !rate) {
     return res
-      .status(400)
-      .json({ message: 'O campo "date" é obrigatório e "datedAt" e "rate" não podem ser vazios' });
+      .status(400).json({
+        message: 'O campo "date" é obrigatório e "datedAt" e "rate" não podem ser vazios' });
   }
   if (!verifyDate.test(String(datedAt))) {
     return res.status(400).json({ message: 'O campo "datedAt" deve ter o formato "dd/mm/aaaa"' });
   }
-  const oldCrushArray = await lerCrush();
-  const newCrushArray = [...oldCrushArray, { ...req.body, id: oldCrushArray.length + 1 }];
-  await adicionaCrush(newCrushArray);
-  return res.status(201).json({ ...req.body, id: oldCrushArray.length + 1 });
+  const listaCrushOld = await lerCrush();
+  const listaCrushNew = [...listaCrushOld, { ...req.body, id: listaCrushOld.length + 1 }];
+  await adicionaCrush(listaCrushNew);
+  return res.status(201).json({ ...req.body, id: listaCrushOld.length + 1 });
 };
