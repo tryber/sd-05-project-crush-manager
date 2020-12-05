@@ -6,5 +6,5 @@ module.exports = async (req, res) => {
   console.log("crushlist",listaAtualCrush);
   const id = listaAtualCrush.length + 1;
   adicionaCrush(listaAtualCrush, { id, name, age, date });
-  res.status(200).json({ id, name, age, date });
+  res.status(201).json({ id, name, age, date });
 };
