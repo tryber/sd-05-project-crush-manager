@@ -5,10 +5,9 @@ const lerCrush = async () => {
   return JSON.parse(crushList);
 };
 
-const adicionaCrush = async (crush) => {
-  fs.writeFile('crush.json', JSON.stringify(crush), (err) => {
-    if (err) throw err;
-  });
+const adicionaCrush = async (listaAtual, novaLista) => {
+  const listaPronta = [...listaAtual, novaLista];
+  fs.writeFile('./crush.json', JSON.stringify(listaPronta));
 };
 
 module.exports = {

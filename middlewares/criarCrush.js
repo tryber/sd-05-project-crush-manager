@@ -36,7 +36,7 @@ module.exports = async (req, res) => {
   }
 
   const listaCrushOld = await lerCrush();
-  const listaCrushNew = [...listaCrushOld, { ...req.body, id: listaCrushOld.length + 1 }];
-  await adicionaCrush(listaCrushNew);
-  return res.status(201).json({ ...req.body, id: listaCrushOld.length + 1 });
+  const id = listaCrushOld.length + 1;
+  adicionaCrush(listaCrushOld, { id, name, age, date });
+  res.status(201).json({ id, name, age, date });
 };
