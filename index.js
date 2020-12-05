@@ -22,7 +22,7 @@ app.get('/crush', middlewares.auth, async (_req, res) => {
   res.status(200).json(crushList);
 });
 
-app.post('/crush', middlewares.auth, middlewares.validaNovoCrush, middlewares.addCrush);
+app.post('/crush', middlewares.auth, middlewares.criarCrush);
 
 app.post('/get', (_req, res) => {
   const token = crypto.randomBytes(8).toString('hex');
