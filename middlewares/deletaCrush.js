@@ -8,8 +8,8 @@ const editarCrush = async (novoCrush) => {
 
 module.exports = async (req, res) => {
   const id = parseInt(req.params.id, 10);
-  const results = await lerCrush();
-  const listaNova = results.filter((crush) => crush.id !== id);
+  const { data } = await lerCrush();
+  const listaNova = data.filter((crush) => crush.id !== id);
   await editarCrush(listaNova);
   return res.status(200).json({ message: 'Crush deletado com sucesso' });
 };

@@ -5,6 +5,7 @@ const crypto = require('crypto');
 const bodyparse = require('body-parser');
 
 const middlewares = require('./middlewares');
+const { lerCrush, adicionaCrush } = require('./services/crushManager');
 
 const app = express();
 
@@ -22,16 +23,20 @@ app.post('/login', middlewares.loginValidator, (_req, res) => {
   return res.status(200).send({ token });
 });
 
-app.get('/crush/:id', middlewares.auth, middlewares.retornaCrush);
-
 app.get('/crush', middlewares.auth, middlewares.todosCrush);
+app.get('/crush/:id', middlewares.auth, middlewares.retornaCrush);
+app.get('/crush/search', middlewares.auth, middlewares.searchTerm);
 
 app.put('/crush/:id', middlewares.auth, middlewares.validarCrush, middlewares.editarCrush);
 
-app.post('/crush', middlewares.auth, middlewares.criarCrush);
-
 app.delete('/crush/:id', middlewares.auth, middlewares.deletaCrush);
 
-app.get('/crush/search', middlewares.auth, middlewares.searchTerm);
+app.post('/crush', middlewares.auth, middlewares.validarCrush, async (req, res) => {
+  const { name, age, date } = req.body;
+  const { data, id } = await lerCrush();
+  data.push({ name, age, id, date });
+  await adicionaCrush(data);
+  return res.status(201).json({ name, age, id, date });
+});
 
 app.listen(PORT, () => console.log('ON LINE!'));
