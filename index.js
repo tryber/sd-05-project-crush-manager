@@ -10,6 +10,11 @@ const app = express();
 
 app.use(bodyparse.json());
 
+// não remova esse endpoint, e para o avaliador funcionarr
+app.get('/', (request, response) => {
+  response.send();
+});
+
 app.post('/login', middlewares.loginValidator, (_req, res) => {
   const token = crypto.randomBytes(8).toString('hex');
   return res.status(200).send({ token });
@@ -25,14 +30,6 @@ app.post('/crush', middlewares.auth, middlewares.criarCrush);
 
 app.delete('/crush/:id', middlewares.auth, middlewares.deletaCrush);
 
-app.post('/get', (_req, res) => {
-  const token = crypto.randomBytes(8).toString('hex');
-  return res.status(200).send({ token });
-});
-
-// não remova esse endpoint, e para o avaliador funcionarr
-app.get('/', (request, response) => {
-  response.send();
-});
+app.get('/crush/search', middlewares.auth, middlewares.searchTerm);
 
 app.listen(3000, () => console.log('ON LINE!'));
