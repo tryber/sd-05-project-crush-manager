@@ -5,12 +5,14 @@ const editarCrush = require('./editarCrush');
 const validarCrush = require('./validarCrush');
 const deletaCrush = require('./deletaCrush');
 const retornaCrush = require('./retornaCrush');
+const searchTerm = require('./searchTerm');
 const loginValidator = require('./loginValidator');
 
 module.exports = {
   auth,
   criarCrush,
   todosCrush,
+  searchTerm,
   editarCrush,
   deletaCrush,
   validarCrush,
