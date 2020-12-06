@@ -8,8 +8,9 @@ const editarCrush = async (novoCrush) => {
 
 module.exports = async (req, res) => {
   const { name, age, date } = req.body;
+  const id = parseInt(req.params.id, 10);
   const results = await lerCrush();
-  const crushEncontrado = results.find((crush) => crush.id === parseInt(req.params.id, 10));
+  const crushEncontrado = results.find((crush) => crush.id === id);
   const index = results.indexOf(crushEncontrado);
   results[index] = { id, name, age, date };
   await editarCrush(results);
