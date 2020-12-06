@@ -6,8 +6,6 @@ const bodyparse = require('body-parser');
 
 const middlewares = require('./middlewares');
 
-const { lerCrush } = require('./services/crushManager');
-
 const app = express();
 
 app.use(bodyparse.json());
