@@ -23,8 +23,10 @@ app.post('/login', middlewares.loginValidator, (_req, res) => {
   return res.status(200).send({ token });
 });
 
-app.get('/crush', middlewares.auth, middlewares.todosCrush);
 app.get('/crush/:id', middlewares.auth, middlewares.retornaCrush);
+
+app.get('/crush', middlewares.auth, middlewares.todosCrush);
+
 app.get('/crush/search', middlewares.auth, middlewares.searchTerm);
 
 app.put('/crush/:id', middlewares.auth, middlewares.validarCrush, middlewares.editarCrush);
