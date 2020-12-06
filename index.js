@@ -8,6 +8,8 @@ const middlewares = require('./middlewares');
 
 const app = express();
 
+const PORT = 3000;
+
 app.use(bodyparse.json());
 
 // não remova esse endpoint, e para o avaliador funcionarr
@@ -20,9 +22,9 @@ app.post('/login', middlewares.loginValidator, (_req, res) => {
   return res.status(200).send({ token });
 });
 
-app.get('/crush', middlewares.auth, middlewares.todosCrush);
-
 app.get('/crush/:id', middlewares.auth, middlewares.retornaCrush);
+
+app.get('/crush', middlewares.auth, middlewares.todosCrush);
 
 app.put('/crush/:id', middlewares.auth, middlewares.validarCrush, middlewares.editarCrush);
 
@@ -32,4 +34,4 @@ app.delete('/crush/:id', middlewares.auth, middlewares.deletaCrush);
 
 app.get('/crush/search', middlewares.auth, middlewares.searchTerm);
 
-app.listen(3000, () => console.log('ON LINE!'));
+app.listen(PORT, () => console.log('ON LINE!'));
