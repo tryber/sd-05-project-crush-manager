@@ -24,7 +24,7 @@ app.get('/crush', middlewares.auth, async (_req, res) => {
 
 app.get('/crush/:id', middlewares.auth, middlewares.retornaCrush);
 
-app.put('/crush/:id', middlewares.auth, middlewares.editarCrush);
+app.put('/crush/:id', middlewares.auth, middlewares.validarCrush, middlewares.editarCrush);
 
 app.post('/crush', middlewares.auth, middlewares.criarCrush);
 
