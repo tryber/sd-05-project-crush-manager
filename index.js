@@ -17,16 +17,15 @@ app.post('/login', middlewares.loginValidator, (_req, res) => {
   return res.status(200).send({ token });
 });
 
-app.get('/crush', middlewares.auth, async (_req, res) => {
-  const crushList = await lerCrush();
-  res.status(200).json(crushList);
-});
+app.get('/crush', middlewares.auth, middlewares.todosCrush);
 
 app.get('/crush/:id', middlewares.auth, middlewares.retornaCrush);
 
 app.put('/crush/:id', middlewares.auth, middlewares.validarCrush, middlewares.editarCrush);
 
 app.post('/crush', middlewares.auth, middlewares.criarCrush);
+
+app.delete('/crush/:id', middlewares.auth, middlewares.deletaCrush);
 
 app.post('/get', (_req, res) => {
   const token = crypto.randomBytes(8).toString('hex');

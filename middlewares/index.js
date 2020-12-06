@@ -1,16 +1,18 @@
 const auth = require('./auth');
 const criarCrush = require('./criarCrush');
+const todosCrush = require('./todosCrush');
 const editarCrush = require('./editarCrush');
 const validarCrush = require('./validarCrush');
-const loginValidator = require('./loginValidator');
-const deletarCrush = require('./deletarCrush');
+const deletaCrush = require('./deletaCrush');
 const retornaCrush = require('./retornaCrush');
+const loginValidator = require('./loginValidator');
 
 module.exports = {
   auth,
   criarCrush,
+  todosCrush,
   editarCrush,
-  deletarCrush,
+  deletaCrush,
   validarCrush,
   retornaCrush,
   loginValidator,
