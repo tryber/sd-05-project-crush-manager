@@ -1,16 +1,18 @@
 const express = require('express');
-const { error } = require('./middlewares');
-const { loginValidate } = require('./services/index');
+const bodyParser = require('body-parser');
+const { auth, error } = require('./middlewares');
 
 const app = express();
 
+app.use(bodyParser.json());
+
 // não remova esse endpoint, e para o avaliador funcionar
 app.get('/', (_req, res) => {
-  res.send('Ok');
+  res.sendStatus(200);
 });
 
-app.post('/login', loginValidate, (req, res) => {
-  res.status(200).json(req.data); // token passado por 'data'
+app.post('/login', auth, (req, res) => {
+  res.status(200).json(res.data); // token passado por 'data'
 });
 
 app.use(error);
