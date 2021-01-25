@@ -18,33 +18,25 @@ function emailValidado(email) {
 }
 // retorna booleano
 
-const validaData = (body) => body.email && body.password;
-// confirma email e senha
-
 router.post('/', (req, res) => {
-  if (!validaData(req.body.email)) {
-    res.status(400).json({ message: 'missing data' });
-  }
-  const token = geraToken();
-  // une rota raiz com rota /login
-  const { email, password } = req.params;
-  if (email === null || email === '') {
+  if (!req.body.email) {
     res.status(400).json({ message: 'O campo "email" é obrigatório' });
   }
-  if (!emailValidado(email)) {
+  if (!emailValidado(req.body.email)) {
     res
       .status(400)
       .json({ message: 'O "email" deve ter o formato "email@email.com"' });
   }
-  if (!password === null || password === '') {
+  if (!req.body.password) {
     res.status(400).json({ message: 'O campo "password" é obrigatório' });
   }
-  if (password.length < 6) {
+  if (req.body.password.toString().length < 6) {
     res
       .status(400)
       .json({ message: 'A "senha" deve ter pelo menos 6 caracteres' });
   }
-  return res.status(200).json({ token });
+  const token = geraToken();
+  res.status(200).json({ token });
 });
 
 module.exports = router;
