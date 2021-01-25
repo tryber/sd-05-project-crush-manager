@@ -8,7 +8,7 @@ const crypto = require('crypto'); // gera token
 // devem permanecer na raiz
 
 function geraToken() {
-  return crypto.randomBytes(2).toString('hex');
+  return crypto.randomBytes(8).toString('hex');
 }
 
 const regexEmail = /\S+@\S+\.\S+/;
