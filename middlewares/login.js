@@ -3,6 +3,7 @@ const createToken = require('../services/tokenGenerator');
 
 const login = (req, res) => {
   const token = createToken();
+  console.log(typeof token);
   const { email, password } = req.body;
   if (!email) {
     return res.status(400).json({ message: 'O campo "email" é obrigatório' });
@@ -16,7 +17,7 @@ const login = (req, res) => {
   if (!validate.validatePassword(password)) {
     return res.status(400).json({ message: 'A "senha" deve ter pelo menos 6 caracteres' });
   }
-  return res.status(200).json(token);
+  return res.status(200).json({ token });
 };
 
 module.exports = login;
