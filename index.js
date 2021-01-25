@@ -6,6 +6,8 @@ const rotaIndex = require('./rotaIndex');
 
 const app = express();
 
+const PORT = 3000;
+
 app.use(bodyParser.json());
 
 // const validaToken = require('./')
@@ -17,4 +19,4 @@ app.get('/', (request, response) => {
   response.send();
 });
 
-app.listen(3000, () => console.log('O dono tá on!'));
+app.listen(PORT, () => console.log('O dono tá on!'));

@@ -21,7 +21,7 @@ function emailValidado(email) {
 const validaData = (body) => body.email && body.password;
 // confirma email e senha
 
-router.post('/', async (req, res) => {
+router.post('/', (req, res) => {
   if (!validaData(req.body.email)) {
     res.status(400).json({ message: 'missing data' });
   }
