@@ -1,5 +1,7 @@
-const logRouteIdMiddleware = require('./logRouteIdMiddleware');
+const routsMiddleware = require('./routsMiddleware');
+const errorHandler = require('./errorHandler');
 
 module.exports = {
-  logRouteIdMiddleware,
+  routsMiddleware,
+  errorHandler,
 };
