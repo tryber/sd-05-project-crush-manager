@@ -10,7 +10,7 @@ function geraToken() {
   return crypto.randomBytes(2).toString('hex');
 }
 
-const regexEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
+const regexEmail = /\S+@\S+\.\S+/;
 
 function emailValidado(email) {
   return regexEmail.test(String(email).toLowerCase());
@@ -30,11 +30,17 @@ router.post('/', async (req, res) => {
   if (email === null || email === '') {
     return res.status(400).json({ message: 'O campo "email" é obrigatório' });
   } else if (!emailValidado(email)) {
-    return res.status(400).json({ message: 'O "email" deve ter o formato "email@email.com"' });
+    return res
+      .status(400)
+      .json({ message: 'O "email" deve ter o formato "email@email.com"' });
   } else if (!password === null || password === '') {
-    return res.status(400).json({ message: 'O campo "password" é obrigatório' });
+    return res
+      .status(400)
+      .json({ message: 'O campo "password" é obrigatório' });
   } else if (password.length < 6) {
-    return res.status(400).json({ message: 'A "senha" deve ter pelo menos 6 caracteres' });
+    return res
+      .status(400)
+      .json({ message: 'A "senha" deve ter pelo menos 6 caracteres' });
   }
   return res.status(200).json({ token });
 });
