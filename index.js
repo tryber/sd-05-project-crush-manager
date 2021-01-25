@@ -4,8 +4,6 @@ const app = express();
 
 const rotaIndex = require('./rotaIndex');
 
-app.post('/login', rotaIndex);
-
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
