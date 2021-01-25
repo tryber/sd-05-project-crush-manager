@@ -4,9 +4,12 @@ const middlewares = require('../middlewares');
 
 const crushRouter = express.Router();
 
-crushRouter.get('/:id', middlewares.routsMiddleware, middlewares.errorHandler, (req, res) => {
-  res.send('ho ho ho');
+crushRouter.get('/', (_req, res) => {
+  res.send('teste');
 });
+
+crushRouter.post('/login', middlewares.login);
+
 module.exports = crushRouter;
 
 // https://

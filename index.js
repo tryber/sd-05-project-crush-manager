@@ -1,14 +1,18 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const crushRouter = require('./services/crushRouter');
 
 const app = express();
 
-// não remova esse endpoint, e para o avaliador funcionar
-app.get('/', (request, response) => {
-  response.send('teste');
-});
+app.use(bodyParser.json());
 
-app.use('/teste', crushRouter);
+// não remova esse endpoint, e para o avaliador funcionar
+// app.get('/', (request, response) => {
+//   response.send('teste');
+// });
+
+app.use('/', crushRouter);
 
 const PORT = 3000;
+
 app.listen(PORT, () => console.log(`Listening @ port: ${PORT}`));
