@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { auth, error } = require('./middlewares');
+const { login, error } = require('./middlewares');
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.get('/', (_req, res) => {
   res.sendStatus(200);
 });
 
-app.post('/login', auth, (req, res) => {
+app.post('/login', login, (req, res) => {
   res.status(200).json(res.data); // token passado por 'data'
 });
 
