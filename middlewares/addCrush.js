@@ -41,7 +41,7 @@ const addCrush = async (req, res) => {
     console.log(list);
     const newCrush = await fileSystem.writeCrushPromise('./crush.json', list, name, age, date);
     console.log(newCrush);
-    return res.status(201).json({ newCrush });
+    return res.status(201).send(newCrush);
   } catch (error) {
     console.error(`Erro ao ler arquivos: ${error.message}`);
   }
