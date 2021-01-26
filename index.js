@@ -1,6 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { login, error } = require('./middlewares');
+const { auth, crush, error } = require('./middlewares');
+
+const loginController = require('./controllers/loginController');
+const { addCrush } = require('./controllers/crushController');
 
 const app = express();
 
@@ -11,9 +14,11 @@ app.get('/', (_req, res) => {
   res.sendStatus(200);
 });
 
-app.post('/login', login, (req, res) => {
-  res.status(200).json(res.data); // token passado por 'data'
-});
+app.post('/login', loginController);
+
+app.use(auth);
+
+app.post('/crush', crush, addCrush);
 
 app.use(error);
 

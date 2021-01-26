@@ -1,7 +1,9 @@
+const auth = require('./auth.js');
+const crush = require('./crush.js');
 const error = require('./error');
-const login = require('./login');
 
 module.exports = {
+  auth,
+  crush,
   error,
-  login,
 };
