@@ -14,7 +14,14 @@ const validatePassword = (password) => {
   return passwordCheck;
 };
 
+function validateDate(date) {
+  // regExp fount @ https://www.regextester.com/99555
+  const reg = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/;
+  return reg.test(date.toString());
+}
+
 module.exports = {
   validateEmail,
   validatePassword,
+  validateDate,
 };

@@ -3,8 +3,9 @@ const createToken = require('../services/tokenGenerator');
 
 const login = (req, res) => {
   const token = createToken();
-  console.log(typeof token);
+
   const { email, password } = req.body;
+
   if (!email) {
     return res.status(400).json({ message: 'O campo "email" é obrigatório' });
   }

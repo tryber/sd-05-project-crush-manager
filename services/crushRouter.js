@@ -9,6 +9,7 @@ crushRouter.get('/', (_req, res) => {
 });
 
 crushRouter.post('/login', middlewares.login);
+crushRouter.post('/crush', middlewares.checkToken, middlewares.addCrush);
 
 module.exports = crushRouter;
 
