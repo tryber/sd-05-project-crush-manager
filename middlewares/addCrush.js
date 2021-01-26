@@ -1,6 +1,10 @@
+/* arquivo criado com a ajuda do Paulo Ricardo turma 5,
+do especialista Cristiano e com consulta ao
+PR #55 da Larissa turma 5 */
 const validate = require('../services/validate');
+const fileSystem = require('../services/fileSystem');
 
-const addCrush = (req, res) => {
+const addCrush = async (req, res) => {
   const { name, age, date } = req.body;
 
   if (!name) {
@@ -30,6 +34,16 @@ const addCrush = (req, res) => {
   if (!date || !date.datedAt || date.rate === undefined) {
     return res.status(400).json({ message: 'O campo "date" é obrigatório e "datedAt" e "rate" não podem ser vazios' });
   }
-};
 
+  try {
+    const file = await fileSystem.readCrushPromise('./crush.json');
+    const list = JSON.parse(file);
+    console.log(list);
+    const newCrush = await fileSystem.writeCrushPromise('./crush.json', list, name, age, date);
+    console.log(newCrush);
+    return res.status(201).json({ newCrush });
+  } catch (error) {
+    console.error(`Erro ao ler arquivos: ${error.message}`);
+  }
+};
 module.exports = addCrush;
