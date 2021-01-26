@@ -10,6 +10,7 @@ crushRouter.get('/', (_req, res) => {
 
 crushRouter.post('/login', middlewares.login);
 crushRouter.post('/crush', middlewares.checkToken, middlewares.addCrush);
+crushRouter.get('/crush', middlewares.checkToken, middlewares.getCrush);
 
 module.exports = crushRouter;
 

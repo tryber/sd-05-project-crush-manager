@@ -3,6 +3,7 @@ const errorHandler = require('./errorHandler');
 const login = require('./login');
 const checkToken = require('./checkToken');
 const addCrush = require('./addCrush');
+const getCrush = require('./getCrush');
 
 module.exports = {
   routsMiddleware,
@@ -10,4 +11,5 @@ module.exports = {
   login,
   checkToken,
   addCrush,
+  getCrush,
 };
