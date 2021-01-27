@@ -16,10 +16,10 @@ app.use(bodyParser.json());
 
 // const validaToken = require('./')
 
+app.use('/crush', validaToken, rotaCrush);
+
 app.use('/login', rotaIndex);
 // não remova esse endpoint, e para o avaliador funcionar
-
-app.use('/crush', validaToken, rotaCrush);
 
 app.get('/', (request, response) => {
   response.send();
