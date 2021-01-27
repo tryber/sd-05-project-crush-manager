@@ -74,7 +74,7 @@ router.post('/', async (req, res) => {
     },
   ];
 
-  await writeCrushFile(rnewArrayOfCrush);
+  await writeCrushFile(newArrayOfCrush);
   res.status(201).json(newArrayOfCrush[id - 1]);
 });
 
