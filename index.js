@@ -4,6 +4,10 @@ const express = require('express');
 
 const rotaIndex = require('./rotaIndex');
 
+const validaToken = require('./validaToken');
+
+const rotaCrush = require('./rotaCrush');
+
 const app = express();
 
 const PORT = 3000;
@@ -14,6 +18,8 @@ app.use(bodyParser.json());
 
 app.use('/login', rotaIndex);
 // não remova esse endpoint, e para o avaliador funcionar
+
+app.use('/crush', validaToken, rotaCrush);
 
 app.get('/', (request, response) => {
   response.send();
