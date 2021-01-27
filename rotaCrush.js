@@ -83,12 +83,12 @@ router.get('/', async (_req, res) => {
   res.status(200).send(crush);
 });
 
-/* router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   const crush = await readCrushFile();
   const { id } = req.params.id;
   const caracterFiltrado = crush.find((character) => character.id === id) || [];
   res.status(200).send(caracterFiltrado);
-}); */
+});
 
 // desafio 2 quebrou nas 2 validações que estão no validaToken
 
