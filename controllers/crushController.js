@@ -1,6 +1,11 @@
 const { readCrushFile, addCrushFile } = require('../services/fsFunc');
 
-const addCrush = async (req, res) => {
+const getAllCrushs = async (req, res) => {
+  const crushList = await readCrushFile();
+  res.status(200).json(crushList);
+};
+
+const createCrush = async (req, res) => {
   const currentCrushList = await readCrushFile();
   const id = currentCrushList.length + 1;
   const newCrush = { id, ...req.body };
@@ -9,5 +14,6 @@ const addCrush = async (req, res) => {
 };
 
 module.exports = {
-  addCrush,
+  getAllCrushs,
+  createCrush,
 };
