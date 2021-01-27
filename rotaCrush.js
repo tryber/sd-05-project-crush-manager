@@ -57,8 +57,25 @@ router.post('/', async (req, res) => {
       .status(400)
       .json({ message: 'O campo "rate" deve ser um inteiro de 1 à 5' });
   }
-  await writeCrushFile(req.body);
-  res.status(201).json(req.body[id - 1]);
+
+  const exCrush = await readCrushFile();
+  const id = exCrush.length + 1;
+  const { datedAt, rate } = date;
+  const newArrayOfCrush = [
+    ...exCrush,
+    {
+      id,
+      name,
+      age,
+      date: {
+        datedAt,
+        rate,
+      },
+    },
+  ];
+
+  await writeCrushFile(rnewArrayOfCrush);
+  res.status(201).json(newArrayOfCrush[id - 1]);
 });
 
 router.get('/', async (_req, res) => {
