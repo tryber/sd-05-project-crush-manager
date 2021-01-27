@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const { auth, crush, error } = require('./middlewares');
+const { auth, checkCrush, error } = require('./middlewares');
 
 const loginController = require('./controllers/loginController');
 const {
@@ -29,8 +29,8 @@ app.use(auth);
 app.get('/crush', getAllCrushs);
 app.get('/crush/search', searchCrush);
 app.get('/crush/:id', getCrushById);
-app.post('/crush', crush, createCrush);
-app.put('/crush/:id', crush, editCrushById);
+app.post('/crush', checkCrush, createCrush);
+app.put('/crush/:id', checkCrush, editCrushById);
 app.delete('/crush/:id', deleteCrush);
 
 app.use(error);

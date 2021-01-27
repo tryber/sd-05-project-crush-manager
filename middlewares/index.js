@@ -1,9 +1,9 @@
 const auth = require('./auth.js');
-const crush = require('./crush.js');
+const checkCrush = require('./checkCrush.js');
 const error = require('./error');
 
 module.exports = {
   auth,
-  crush,
+  checkCrush,
   error,
 };
