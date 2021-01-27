@@ -3,7 +3,14 @@ const bodyParser = require('body-parser');
 const { auth, crush, error } = require('./middlewares');
 
 const loginController = require('./controllers/loginController');
-const { getAllCrushs, getCrushById, createCrush, editCrushById, deleteCrush } = require('./controllers/crushController');
+const {
+  getAllCrushs,
+  getCrushById,
+  createCrush,
+  editCrushById,
+  deleteCrush,
+  searchCrush,
+} = require('./controllers/crushController');
 
 const app = express();
 
@@ -20,13 +27,10 @@ app.post('/login', loginController);
 app.use(auth);
 
 app.get('/crush', getAllCrushs);
-
+app.get('/crush/search', searchCrush);
 app.get('/crush/:id', getCrushById);
-
 app.post('/crush', crush, createCrush);
-
 app.put('/crush/:id', crush, editCrushById);
-
 app.delete('/crush/:id', deleteCrush);
 
 app.use(error);

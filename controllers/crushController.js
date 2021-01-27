@@ -45,10 +45,18 @@ const deleteCrush = async (req, res) => {
   res.status(200).json({ message: 'Crush deletado com sucesso' });
 };
 
+const searchCrush = async (req, res) => {
+  const crushList = await readCrushFile();
+  if (!req.query.q) res.status(200).json(crushList);
+  const foundCrushs = crushList.filter((crush) => crush.name.includes(req.query.q));
+  res.status(200).json(foundCrushs);
+};
+
 module.exports = {
   getAllCrushs,
   getCrushById,
   createCrush,
   editCrushById,
   deleteCrush,
+  searchCrush,
 };
