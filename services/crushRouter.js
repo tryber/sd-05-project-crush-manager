@@ -11,6 +11,7 @@ crushRouter.get('/', (_req, res) => {
 crushRouter.post('/login', middlewares.login);
 crushRouter.post('/crush', middlewares.checkToken, middlewares.addCrush);
 crushRouter.get('/crush', middlewares.checkToken, middlewares.getCrush);
+crushRouter.get('/crush/search', middlewares.checkToken, middlewares.queryCrush);
 crushRouter.get('/crush/:id', middlewares.checkToken, middlewares.searchById);
 crushRouter.put('/crush/:id', middlewares.checkToken, middlewares.editCrush);
 crushRouter.delete('/crush/:id', middlewares.checkToken, middlewares.deleteCrush);

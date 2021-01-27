@@ -7,6 +7,7 @@ const getCrush = require('./getCrush');
 const searchById = require('./searchById');
 const editCrush = require('./editCrush');
 const deleteCrush = require('./deleteCrush');
+const queryCrush = require('./queryCrush');
 
 module.exports = {
   routsMiddleware,
@@ -18,4 +19,5 @@ module.exports = {
   searchById,
   editCrush,
   deleteCrush,
+  queryCrush,
 };
