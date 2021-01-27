@@ -14,6 +14,7 @@ const editCrushById = async (req, res) => {
   const crushList = await readCrushFile();
   crushList.find((crush, _index) => {
     if (crush.id === id) index = _index;
+    return null; // ESLint
   });
   let newCrush = crushList[index];
   newCrush = { id, ...req.body };
