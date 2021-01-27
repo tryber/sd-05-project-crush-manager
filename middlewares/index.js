@@ -5,6 +5,7 @@ const checkToken = require('./checkToken');
 const addCrush = require('./addCrush');
 const getCrush = require('./getCrush');
 const searchById = require('./searchById');
+const editCrush = require('./editCrush');
 
 module.exports = {
   routsMiddleware,
@@ -14,4 +15,5 @@ module.exports = {
   addCrush,
   getCrush,
   searchById,
+  editCrush,
 };

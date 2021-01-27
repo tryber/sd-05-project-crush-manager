@@ -9,7 +9,7 @@ function readCrushPromise(file) {
   });
 }
 
-function writeCrushPromise(file, list, name, age, date) {
+function addCrushPromise(file, list, name, age, date) {
   const id = list.length + 1;
   const newCrush = { id, name, age, date };
   list.push(newCrush);
@@ -22,7 +22,18 @@ function writeCrushPromise(file, list, name, age, date) {
   });
 }
 
+function editCrushPromise(file, list) {
+  const listJSON = JSON.stringify(list);
+  return new Promise((resolve, reject) => {
+    fileSystem.writeFile(file, listJSON, (err) => {
+      if (err) return reject(err);
+      return resolve('?');
+    });
+  });
+}
+
 module.exports = {
   readCrushPromise,
-  writeCrushPromise,
+  addCrushPromise,
+  editCrushPromise,
 };

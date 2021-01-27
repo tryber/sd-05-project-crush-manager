@@ -1,11 +1,9 @@
-/* arquivo criado com a ajuda do Paulo Ricardo turma 5,
-do especialista Cristiano e com consulta ao
-PR #55 da Larissa turma 5 */
-const validate = require('../services/validate');
 const fileSystem = require('../services/fileSystem');
+const validate = require('../services/validate');
 
-const addCrush = async (req, res) => {
+const editCrush = async (req, res) => {
   const { name, age, date } = req.body;
+  const id = parseInt(req.params.id, 10);
 
   if (!name) {
     return res.status(400).json({ message: 'O campo "name" é obrigatório' });
@@ -38,10 +36,14 @@ const addCrush = async (req, res) => {
   try {
     const file = await fileSystem.readCrushPromise('./crush.json');
     const list = JSON.parse(file);
-    const newCrush = await fileSystem.addCrushPromise('./crush.json', list, name, age, date);
-    return res.status(201).send(newCrush);
+    const crush = list.find((element) => parseInt(id, 10) === element.id);
+    if (!crush) res.status(404).json({ message: 'Crush não encontrado' });
+    list[id] = { name, age, id, date };
+    await fileSystem.editCrushPromise('./crush.json', list);
+    return res.status(200).send(list[id]);
   } catch (error) {
     console.error(`Erro ao ler arquivos: ${error.message}`);
   }
 };
-module.exports = addCrush;
+
+module.exports = editCrush;
