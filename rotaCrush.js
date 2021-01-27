@@ -16,8 +16,13 @@ const writeCrushFile = async (content) =>
     JSON.stringify(content),
     (err) => {
       if (err) throw err;
-    }
+    },
   );
+
+const readCrushFile = async () => {
+  const content = await fs.readFile(path.resolve(__dirname, '.', 'crush.json'));
+  return JSON.parse(content.toString('utf-8'));
+};
 
 router.post('/', async (req, res) => {
   const { name, age, date } = req.body;
@@ -54,6 +59,18 @@ router.post('/', async (req, res) => {
   }
   await writeCrushFile(req.body);
   res.status(201).json(req.body[id - 1]);
+});
+
+router.get('/', async (_req, res) => {
+  const crush = await readCrushFile();
+  res.status(200).send(crush);
+});
+
+router.get('/:id', async (req, res) => {
+  const crush = await readCrushFile();
+  const { id } = req.params.id;
+  const caracterFiltrado = crush.find((character) => character.id === id) || [];
+  res.status(200).send(caracterFiltrado);
 });
 
 // devo unificar rotaCrush com validaToken? - ok (vlw Hugão!)
