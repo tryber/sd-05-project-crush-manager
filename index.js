@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const { auth, crush, error } = require('./middlewares');
 
 const loginController = require('./controllers/loginController');
-const { getAllCrushs, createCrush } = require('./controllers/crushController');
+const { getAllCrushs, getCrushById, createCrush } = require('./controllers/crushController');
 
 const app = express();
 
@@ -20,6 +20,8 @@ app.post('/login', loginController);
 app.use(auth);
 
 app.get('/crush', getAllCrushs);
+
+app.get('/crush/:id', getCrushById);
 
 app.post('/crush', crush, createCrush);
 
