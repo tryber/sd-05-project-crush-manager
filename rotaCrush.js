@@ -174,6 +174,23 @@ router.put('/:id', async (req, res) => {
   res.status(200).json(newArrayOfCrush[id - 1]);
 });
 
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  const { authorization } = req.headers;
+  const crush = await readCrushFile();
+
+  const deleteCrushId = crush.find((caracter) => caracter.id === Number(id));
+  if (deleteCrushId) {
+    return res.status(200).json({ message: 'Crush deletado com sucesso' });
+  }
+  if (!authorization) {
+    return res.status(401).json({ message: 'Token não encontrado' });
+  }
+  if (authorization && authorization.length !== 16) {
+    return res.status(401).json({ message: 'Token inválido' });
+  }
+});
+
 // desafio 2 quebrou nas 2 validações que estão no validaToken
 
 // devo unificar rotaCrush com validaToken? - ok (vlw Hugão!)
