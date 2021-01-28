@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 app.use('/crush', validaToken, rotaCrush);
 
 app.use('/login', rotaIndex);
+
 // não remova esse endpoint, e para o avaliador funcionar
 
 app.get('/', (request, response) => {

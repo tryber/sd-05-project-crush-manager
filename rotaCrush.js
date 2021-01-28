@@ -16,7 +16,7 @@ const writeCrushFile = async (content) =>
     JSON.stringify(content),
     (err) => {
       if (err) throw err;
-    },
+    }
   );
 
 const readCrushFile = async () => {
@@ -85,9 +85,20 @@ router.get('/', async (_req, res) => {
 
 router.get('/:id', async (req, res) => {
   const crush = await readCrushFile();
-  const { id } = req.params.id;
-  const caracterFiltrado = crush.find((character) => character.id === id) || [];
-  res.status(200).send(caracterFiltrado);
+  const { authorization } = req.headers;
+  const { id } = req.params;
+  if (!authorization) {
+    res.status(401).json({ message: 'Token não encontrado' });
+  }
+  if (authorization && authorization.length !== 16) {
+    res.status(401).json({ message: 'Token inválido' });
+  }
+  const caracterFiltrado = crush.find(
+    (character) => character.id === Number(id)
+  );
+  if (caracterFiltrado === undefined)
+    return res.status(404).json({ message: 'Crush não encontrado' });
+  res.status(200).json(caracterFiltrado);
 });
 
 // desafio 2 quebrou nas 2 validações que estão no validaToken
