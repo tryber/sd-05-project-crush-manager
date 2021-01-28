@@ -1,6 +1,6 @@
-const bodyParser = require('body-parser');
-
 const express = require('express');
+
+const bodyParser = require('body-parser');
 
 const rotaIndex = require('./rotaIndex');
 
@@ -13,8 +13,6 @@ const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
-
-// const validaToken = require('./')
 
 app.use('/crush', validaToken, rotaCrush);
 

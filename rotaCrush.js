@@ -16,7 +16,7 @@ const writeCrushFile = async (content) =>
     JSON.stringify(content),
     (err) => {
       if (err) throw err;
-    }
+    },
   );
 
 const readCrushFile = async () => {
@@ -28,32 +28,32 @@ router.post('/', async (req, res) => {
   const { name, age, date } = req.body;
   console.log(req.body);
   if (!name) {
-    res.status(400).json({ message: 'O campo "name" é obrigatório' });
+    return res.status(400).json({ message: 'O campo "name" é obrigatório' });
   }
   if (name.length < 3) {
-    res
+    return res
       .status(400)
       .json({ message: 'O "name" deve ter pelo menos 3 caracteres' });
   }
   if (!age) {
-    res.status(400).json({ message: 'O campo "age" é obrigatório' });
+    return res.status(400).json({ message: 'O campo "age" é obrigatório' });
   }
   if (Number(age) < 18) {
-    res.status(400).json({ message: 'O crush deve ser maior de idade' });
+    return res.status(400).json({ message: 'O crush deve ser maior de idade' });
   }
   if (!date || !date.datedAt || !date.rate) {
-    res.status(400).json({
+    return res.status(400).json({
       message:
         'O campo "date" é obrigatório e "datedAt" e "rate" não podem ser vazios',
     });
   }
   if (!moment(date.datedAt, 'DD/MM/AAAA').isValid()) {
-    res
+    return res
       .status(400)
       .json({ message: 'O campo "datedAt" deve ter o formato "dd/mm/aaaa"' });
   }
   if (Number(date.rate) < 1 || Number(date.rate) > 5) {
-    res
+    return res
       .status(400)
       .json({ message: 'O campo "rate" deve ser um inteiro de 1 à 5' });
   }
@@ -94,10 +94,9 @@ router.get('/:id', async (req, res) => {
     res.status(401).json({ message: 'Token inválido' });
   }
   const caracterFiltrado = crush.find(
-    (character) => character.id === Number(id)
+    (character) => character.id === Number(id),
   );
-  if (caracterFiltrado === undefined)
-    return res.status(404).json({ message: 'Crush não encontrado' });
+  if (caracterFiltrado === undefined) return res.status(404).json({ message: 'Crush não encontrado' });
   res.status(200).json(caracterFiltrado);
 });
 
