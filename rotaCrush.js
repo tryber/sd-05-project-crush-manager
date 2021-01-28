@@ -24,6 +24,19 @@ const readCrushFile = async () => {
   return JSON.parse(content.toString('utf-8'));
 };
 
+router.get('/', async (_req, res) => {
+  const crush = await readCrushFile();
+  res.status(200).send(crush);
+});
+
+router.get('/search', async (req, res) => {
+  const { q } = req.query;
+  const crush = await readCrushFile();
+  const caracterFiltrado = crush.filter((character) =>
+    character.name.includes(q));
+  return res.status(200).send(caracterFiltrado);
+});
+
 router.post('/', async (req, res) => {
   const { name, age, date } = req.body;
   console.log(req.body);
@@ -78,11 +91,6 @@ router.post('/', async (req, res) => {
   res.status(201).json(newArrayOfCrush[id - 1]);
 });
 
-router.get('/', async (_req, res) => {
-  const crush = await readCrushFile();
-  res.status(200).send(crush);
-});
-
 router.get('/:id', async (req, res) => {
   const crush = await readCrushFile();
   const { authorization } = req.headers;
@@ -96,7 +104,7 @@ router.get('/:id', async (req, res) => {
   const caracterFiltrado = crush.find(
     (character) => character.id === Number(id),
   );
-  if (caracterFiltrado === undefined) return res.status(404).json({ message: 'Crush não encontrado' });
+  if (caracterFiltrado === undefined) { return res.status(404).json({ message: 'Crush não encontrado' }); }
   res.status(200).json(caracterFiltrado);
 });
 
@@ -106,9 +114,7 @@ router.put('/:id', async (req, res) => {
   const { authorization } = req.headers;
   const crush = await readCrushFile();
 
-  const caracterFiltrado = crush.find(
-    (caracter) => caracter.id === Number(id),
-  );
+  const caracterFiltrado = crush.find((caracter) => caracter.id === Number(id));
   if (!caracterFiltrado) {
     return res.status(404).json({ message: 'id não encontrado' });
   }
