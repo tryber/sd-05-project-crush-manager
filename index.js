@@ -1,13 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const authToken = require('./middlewares/login');
+const authToken = require('./middlewares/authToken');
 const loginRoute = require('./middlewares/login');
-const addCrush = require('./middlewares/login');
-const registeredCrushes = require('./middlewares/login');
-const findCrush = require('./middlewares/login');
-const editCrush = require('./middlewares/login');
-const deleteCrush = require('./middlewares/login');
-const crushSearch = require('./middlewares/login');
+const addCrush = require('./middlewares/addCrush');
+const registeredCrushes = require('./middlewares/registeredCrushes');
+const findCrush = require('./middlewares/findCrush');
+const editCrush = require('./middlewares/editCrush');
+const deleteCrush = require('./middlewares/deleteCrush');
+const crushSearch = require('./middlewares/crushSearch');
 
 const app = express();
 app.use(bodyParser.json());
@@ -18,7 +18,7 @@ app.get('/', (request, response) => {
 });
 
 app.post('/login', loginRoute);
-app.get('/crush/search?q=searchTerm', authToken, crushSearch);
+app.get('/crush/search', authToken, crushSearch);
 app.post('/crush', authToken, addCrush);
 app.get('/crush', authToken, registeredCrushes);
 app.get('/crush/:id', authToken, findCrush);
